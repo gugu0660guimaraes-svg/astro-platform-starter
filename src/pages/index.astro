@@ -1,19 +1,542 @@
 ---
-import Layout from '../layouts/Layout.astro';
-import Markdown from '../components/Markdown.astro';
-
-const explainer = `
-An Astro website can go way beyond static pages - on the right platform.
-
-Netlify supports not only [Streaming SSR](https://docs.astro.build/en/guides/server-side-rendering/#html-streaming) and fast [Edge Middleware](https://docs.astro.build/en/guides/middleware/), but also [on-demand revalidation](https://www.netlify.com/blog/cache-tags-and-purge-api-on-netlify/) and [stale-while-revalidate](https://www.netlify.com/blog/swr-and-fine-grained-cache-control/). 
-Any page or data can be rebuilt only when needed, without site visitors ever getting a performance hit.
-`;
+// Landing page - Móveis Trindade
 ---
 
-<Layout title="Welcome to Astro.">
-    <h1 class="mb-10">Netlify Platform Starter for Astro</h1>
-    <Markdown content={explainer} class="mb-10 text-lg" />
-    <p>
-        <a href="https://docs.netlify.com/frameworks/astro/" class="btn btn-lg sm:min-w-64">Read the Docs</a>
-    </p>
-</Layout>
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Móveis Trindade - Montagem Profissional em Cascavel e Região</title>
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Roboto, system-ui, sans-serif;
+        }
+
+        body {
+            background-color: #ffffff;
+            color: #333333;
+            line-height: 1.6;
+        }
+
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        /* Cabeçalho */
+        header {
+            background-color: #1A2B3C;
+            color: white;
+            padding: 1rem 0;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+        }
+
+        header .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: 700;
+            letter-spacing: 1px;
+            color: white;
+        }
+
+        .logo span {
+            color: #2C9A7E;
+        }
+
+        .nav-contato {
+            background-color: #2C9A7E;
+            padding: 0.6rem 1.5rem;
+            border-radius: 50px;
+            font-weight: 600;
+            transition: 0.3s;
+        }
+
+        .nav-contato a {
+            color: white;
+            text-decoration: none;
+            font-size: 1.1rem;
+        }
+
+        .nav-contato:hover {
+            background-color: #1f7a62;
+            transform: scale(1.05);
+        }
+
+        /* Botões */
+        .btn {
+            display: inline-block;
+            background-color: #1A2B3C;
+            color: white;
+            padding: 1rem 2.5rem;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 1.2rem;
+            transition: 0.3s;
+            border: none;
+            cursor: pointer;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+        }
+
+        .btn:hover {
+            background-color: #0f1e2b;
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.15);
+        }
+
+        .btn-whatsapp {
+            background-color: #25D366;
+            color: white;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .btn-whatsapp:hover {
+            background-color: #128C7E;
+        }
+
+        .btn-whatsapp i {
+            font-size: 1.5rem;
+        }
+
+        /* Hero */
+        .hero {
+            padding: 4rem 0;
+            background: linear-gradient(135deg, #f9f9f9 0%, #ffffff 100%);
+        }
+
+        .hero .container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            align-items: center;
+        }
+
+        .hero-content h1 {
+            font-size: 2.8rem;
+            color: #1A2B3C;
+            line-height: 1.2;
+            margin-bottom: 1.5rem;
+        }
+
+        .hero-content p {
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+            color: #555;
+        }
+
+        .hero-image img {
+            width: 100%;
+            border-radius: 20px;
+            box-shadow: 0 20px 30px rgba(0,0,0,0.1);
+        }
+
+        /* Seções */
+        section {
+            padding: 4rem 0;
+        }
+
+        .section-title {
+            font-size: 2.2rem;
+            color: #1A2B3C;
+            text-align: center;
+            margin-bottom: 1rem;
+        }
+
+        .section-subtitle {
+            text-align: center;
+            color: #666;
+            font-size: 1.2rem;
+            max-width: 700px;
+            margin: 0 auto 3rem;
+        }
+
+        /* Compromisso */
+        .compromisso {
+            background-color: #f4f7fc;
+        }
+
+        .compromisso-texto {
+            max-width: 900px;
+            margin: 0 auto;
+            text-align: center;
+            font-size: 1.2rem;
+            background: white;
+            padding: 2.5rem;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+        }
+
+        .compromisso-texto strong {
+            color: #2C9A7E;
+            font-size: 1.5rem;
+            display: block;
+            margin: 1.5rem 0 1rem;
+        }
+
+        /* Depoimentos */
+        .depoimentos-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .depoimento-card {
+            background: white;
+            padding: 2rem;
+            border-radius: 20px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.05);
+            transition: 0.3s;
+            border: 1px solid #eee;
+        }
+
+        .depoimento-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 35px rgba(0,0,0,0.1);
+        }
+
+        .estrelas {
+            color: #FFB800;
+            font-size: 1.3rem;
+            margin-bottom: 1rem;
+        }
+
+        .depoimento-card p {
+            font-style: italic;
+            margin-bottom: 1.5rem;
+            color: #555;
+        }
+
+        .cliente-nome {
+            font-weight: 700;
+            color: #1A2B3C;
+        }
+
+        /* Benefícios */
+        .beneficios-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+            gap: 2rem;
+        }
+
+        .beneficio-item {
+            text-align: center;
+            padding: 2rem;
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.03);
+            border: 1px solid #f0f0f0;
+        }
+
+        .beneficio-item i {
+            font-size: 3rem;
+            color: #2C9A7E;
+            margin-bottom: 1rem;
+        }
+
+        .beneficio-item h3 {
+            color: #1A2B3C;
+            margin-bottom: 0.8rem;
+        }
+
+        .beneficio-item p {
+            color: #666;
+        }
+
+        /* Garantia */
+        .garantia {
+            background-color: #1A2B3C;
+            color: white;
+            text-align: center;
+        }
+
+        .garantia h2 {
+            color: white;
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .garantia h2 span {
+            color: #2C9A7E;
+        }
+
+        .garantia p {
+            font-size: 1.2rem;
+            max-width: 800px;
+            margin: 0 auto 2rem;
+            opacity: 0.9;
+        }
+
+        .garantia .btn {
+            background-color: #2C9A7E;
+            color: white;
+        }
+
+        .garantia .btn:hover {
+            background-color: #1f7a62;
+        }
+
+        /* FAQ */
+        .faq-grid {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .faq-item {
+            background: white;
+            border-radius: 15px;
+            margin-bottom: 1rem;
+            padding: 1.5rem;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.03);
+            border: 1px solid #eee;
+        }
+
+        .faq-pergunta {
+            font-weight: 700;
+            color: #1A2B3C;
+            margin-bottom: 0.5rem;
+            font-size: 1.1rem;
+        }
+
+        .faq-resposta {
+            color: #555;
+        }
+
+        /* CTA Final */
+        .cta-final {
+            background: linear-gradient(135deg, #1A2B3C, #0f1e2b);
+            color: white;
+            text-align: center;
+        }
+
+        .cta-final h2 {
+            color: white;
+            font-size: 2.2rem;
+            margin-bottom: 1rem;
+        }
+
+        .cta-final p {
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+            opacity: 0.9;
+        }
+
+        /* Rodapé */
+        footer {
+            background-color: #1A2B3C;
+            color: white;
+            padding: 2rem 0;
+            text-align: center;
+        }
+
+        footer a {
+            color: #2C9A7E;
+            text-decoration: none;
+        }
+
+        footer .social {
+            margin: 1rem 0;
+        }
+
+        footer .social a {
+            color: white;
+            margin: 0 10px;
+            font-size: 1.5rem;
+            transition: 0.3s;
+        }
+
+        footer .social a:hover {
+            color: #2C9A7E;
+        }
+
+        /* Responsividade */
+        @media (max-width: 768px) {
+            .hero .container {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+
+            .hero-content h1 {
+                font-size: 2.2rem;
+            }
+
+            .section-title {
+                font-size: 1.8rem;
+            }
+
+            .btn {
+                padding: 0.8rem 1.8rem;
+                font-size: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div class="logo">Móveis <span>Trindade</span></div>
+            <div class="nav-contato">
+                <a href="https://wa.me/5545998061813" target="_blank"><i class="fab fa-whatsapp"></i> (45) 99806-1813</a>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <!-- Hero -->
+        <section class="hero">
+            <div class="container">
+                <div class="hero-content">
+                    <h1>Soluções Profissionais em Montagem de Móveis – Praticidade, Segurança e Garantia.</h1>
+                    <p>Evite dores de cabeça e prejuízos com montadores amadores. Sou especialista em transformar aquele monte de peças em um móvel perfeito, com acabamento impecável e total respeito pelo seu tempo e dinheiro.</p>
+                    <a href="https://wa.me/5545998061813" class="btn btn-whatsapp" target="_blank"><i class="fab fa-whatsapp"></i> SOLICITAR ORÇAMENTO AGORA</a>
+                </div>
+                <div class="hero-image">
+                    <img src="/images/logo.jpeg" alt="Móveis Trindade - Logo">
+                </div>
+            </div>
+        </section>
+
+        <!-- Compromisso -->
+        <section class="compromisso">
+            <div class="container">
+                <h2 class="section-title">O meu compromisso com você</h2>
+                <div class="compromisso-texto">
+                    <p>Você já perdeu tempo e dinheiro com um serviço mal feito? Comigo isso não acontece.</p>
+                    <p>Sei que contratar um montador pode ser uma preocupação a mais no seu dia. Por isso, meu trabalho vai além de apenas apertar parafusos. Meu compromisso é entregar um serviço impecável, que respeita o seu orçamento e o valor do seu móvel.</p>
+                    <strong>Meu grande diferencial é simples: resolver o seu problema.</strong>
+                    <p>Enquanto você cuida da sua vida, eu cuido da montagem com técnica, paciência e atenção aos detalhes, garantindo que o resultado final seja exatamente o que você esperava (ou até melhor).</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Depoimentos -->
+        <section>
+            <div class="container">
+                <h2 class="section-title">Quem confia, recomenda</h2>
+                <p class="section-subtitle">Veja o que nossos clientes de Cascavel e região dizem sobre o trabalho da Móveis Trindade.</p>
+                <div class="depoimentos-grid">
+                    <div class="depoimento-card">
+                        <div class="estrelas">&#11088;&#11088;&#11088;&#11088;&#11088;</div>
+                        <p>"Já tinha chamado outra pessoa para montar o guarda-roupa do meu filho e foi um desastre. Com o Móveis Trindade foi totalmente diferente. Ele foi pontual, educado e resolveu uns problemas que o móvel já tinha de fábrica. Recomendo de olhos fechados!"</p>
+                        <div class="cliente-nome">— Ana Paula S.</div>
+                    </div>
+                    <div class="depoimento-card">
+                        <div class="estrelas">&#11088;&#11088;&#11088;&#11088;&#11088;</div>
+                        <p>"Precisava montar um home office complexo e estava com medo de fazer sozinho e estragar. O serviço foi profissional do início ao fim. Ele ainda deu dicas de organização. Economizei meu tempo e minha paz de espírito. Nota 10!"</p>
+                        <div class="cliente-nome">— Carlos M.</div>
+                    </div>
+                    <div class="depoimento-card">
+                        <div class="estrelas">&#11088;&#11088;&#11088;&#11088;&#11088;</div>
+                        <p>"O grande diferencial é a garantia. Saber que se algo desse errado (não deu) eu estaria amparado me fez fechar negócio. Atendimento excelente, preço justo e acabamento perfeito."</p>
+                        <div class="cliente-nome">— Juliana R.</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Benefícios -->
+        <section style="background: #f9f9f9;">
+            <div class="container">
+                <h2 class="section-title">Por que escolher a Móveis Trindade?</h2>
+                <div class="beneficios-grid">
+                    <div class="beneficio-item">
+                        <i class="fas fa-shield-alt"></i>
+                        <h3>Garantia de Serviço</h3>
+                        <p>Sua satisfação é minha prioridade. Se houver qualquer problema relacionado à minha montagem, resolvo com agilidade e sem custo adicional.</p>
+                    </div>
+                    <div class="beneficio-item">
+                        <i class="fas fa-clock"></i>
+                        <h3>Economia de Tempo</h3>
+                        <p>Chega de passar horas lendo manuais confusos. Em poucas horas, seu móvel estará pronto para uso.</p>
+                    </div>
+                    <div class="beneficio-item">
+                        <i class="fas fa-coins"></i>
+                        <h3>Economia de Dinheiro</h3>
+                        <p>Evite o risco de danificar seu móvel e ter que comprar peças novas ou outro móvel. Invista na montagem correta uma única vez.</p>
+                    </div>
+                    <div class="beneficio-item">
+                        <i class="fas fa-tools"></i>
+                        <h3>Resolução de Problemas</h3>
+                        <p>Manual incompleto? Peça com furo errado? Estou preparado para lidar com os imprevistos de fábrica.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Garantia em destaque -->
+        <section class="garantia">
+            <div class="container">
+                <h2>GARANTIA DE SERVIÇO: <span>30 DIAS</span></h2>
+                <p>Ofereço garantia por escrito em todos os serviços. Se por algum motivo você não ficar satisfeito com a montagem, ou se algo que montei apresentar problema, estou à disposição para corrigir. Afinal, meu nome está em jogo.</p>
+                <a href="https://wa.me/5545998061813" class="btn btn-whatsapp" target="_blank"><i class="fab fa-whatsapp"></i> FALAR COM ESPECIALISTA</a>
+            </div>
+        </section>
+
+        <!-- FAQ -->
+        <section>
+            <div class="container">
+                <h2 class="section-title">Perguntas Frequentes</h2>
+                <div class="faq-grid">
+                    <div class="faq-item">
+                        <div class="faq-pergunta">Qual é o prazo para realizar a montagem?</div>
+                        <div class="faq-resposta">Geralmente, consigo agendar para o próximo dia útil, dependendo da demanda. Ao entrar em contato, já me pergunte sobre a disponibilidade.</div>
+                    </div>
+                    <div class="faq-item">
+                        <div class="faq-pergunta">Atende em qual região?</div>
+                        <div class="faq-resposta">Atendo <strong>Cascavel e região</strong>. Entre em contato para confirmarmos se atendo no seu endereço.</div>
+                    </div>
+                    <div class="faq-item">
+                        <div class="faq-pergunta">E se meu móvel for de outra loja ou marca?</div>
+                        <div class="faq-resposta">Sem problemas! Móveis de diferentes lojas e marcas fazem parte do meu dia a dia. O importante é que estejam todos lá na hora da montagem.</div>
+                    </div>
+                    <div class="faq-item">
+                        <div class="faq-pergunta">O orçamento é mesmo gratuito?</div>
+                        <div class="faq-resposta">Sim! Entre em contato pelo WhatsApp, me envie as fotos dos móveis e endereço, e farei um orçamento justo e sem compromisso.</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- CTA Final -->
+        <section class="cta-final">
+            <div class="container">
+                <h2>Pronto para ter seus móveis montados por um profissional de confiança?</h2>
+                <p>Clique no botão abaixo, me envie uma mensagem no WhatsApp e faça seu orçamento sem compromisso. Respondo rápido!</p>
+                <a href="https://wa.me/5545998061813" class="btn btn-whatsapp" style="background-color: white; color: #1A2B3C;" target="_blank"><i class="fab fa-whatsapp" style="color: #25D366;"></i> QUERO UM ORÇAMENTO PELO WHATSAPP</a>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <div class="logo" style="font-size: 1.8rem; margin-bottom: 1rem;">Móveis <span>Trindade</span></div>
+            <p><i class="fas fa-map-marker-alt"></i> Atendemos Cascavel e toda região</p>
+            <p><i class="fab fa-whatsapp"></i> <a href="https://wa.me/5545998061813" target="_blank">(45) 99806-1813</a></p>
+            <p><i class="far fa-envelope"></i> contato@moveistrindade.com.br (opcional)</p>
+            <div class="social">
+                <a href="#" target="_blank"><i class="fab fa-facebook-f"></i></a>
+                <a href="#" target="_blank"><i class="fab fa-instagram"></i></a>
+            </div>
+            <p style="margin-top: 2rem; font-size: 0.9rem; opacity: 0.7;">&copy; 2025 Móveis Trindade. Todos os direitos reservados.</p>
+        </div>
+    </footer>
+</body>
+</html>
